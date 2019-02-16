@@ -1,0 +1,96 @@
+{
+    "common": {
+        "name": "miio",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次提交"
+            }
+        },
+        "title": "Xiaomi miIO protocol device",
+        "titleLang": {
+            "en": "Xiaomi miIO protocol device",
+            "de": "Xiaomi miIO Protokollgerät",
+            "ru": "Протокол протокола Xiaomi miIO",
+            "pt": "Dispositivo de protocolo miIO Xiaomi",
+            "nl": "Xiaomi miIO-protocolapparaat",
+            "fr": "Périphérique de protocole Xiaomi miIO",
+            "it": "Dispositivo protocollo Xiaomi miIO",
+            "es": "Dispositivo de protocolo Xiaomi miIO",
+            "pl": "Urządzenie protokołu Xiaomi miIO",
+            "zh-cn": "小米miIO协议设备"
+        },
+        "desc": {
+            "en": "This adapter controls devices which followed miIO protocol.",
+            "de": "Dieser Adapter steuert Geräte, die dem miIO-Protokoll folgen.",
+            "ru": "Этот адаптер управляет устройствами, которые следуют протоколу miIO.",
+            "pt": "Este adaptador controla dispositivos que seguiram o protocolo miIO.",
+            "nl": "Deze adapter bestuurt apparaten die het miIO-protocol volgden.",
+            "fr": "Cet adaptateur contrôle les périphériques qui ont suivi le protocole miIO.",
+            "it": "Questo adattatore controlla i dispositivi che seguono il protocollo miIO.",
+            "es": "Este adaptador controla dispositivos que siguieron el protocolo miIO.",
+            "pl": "Ten adapter steruje urządzeniami, które następują po protokole miIO.",
+            "zh-cn": "该适配器控制遵循miIO协议的设备。"
+        },
+        "authors": [
+            "SchumyHao <schumyhaojl@126.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "miio.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/SchumyHao/ioBroker.miio/master/admin/miio.png",
+        "readme": "https://github.com/SchumyHao/ioBroker.miio/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "iot-systems",
+        "compact": true,
+        "materialize": true,
+        "materializeTab": true,
+        "adminTab": {
+            "singleton": true,
+            "name": {
+                "en": "Xiaomi miIO protocol device",
+                "de": "Xiaomi miIO Protokollgerät",
+                "ru": "Протокол протокола Xiaomi miIO",
+                "pt": "Dispositivo de protocolo miIO Xiaomi",
+                "nl": "Xiaomi miIO-protocolapparaat",
+                "fr": "Périphérique de protocole Xiaomi miIO",
+                "it": "Dispositivo protocollo Xiaomi miIO",
+                "es": "Dispositivo de protocolo Xiaomi miIO",
+                "pl": "Urządzenie protokołu Xiaomi miIO",
+                "zh-cn": "小米miIO协议设备"
+            },
+            "link": "",
+            "fa-icon": "info"
+        },
+        "supportCustoms": true,
+        "dependencies": [
+            {
+                "admin": ">=3.0.0"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
