@@ -18,10 +18,16 @@
     <script type="text/javascript" src="words.js"></script>
 
     <script type="text/javascript">
+        var devices = [];
+
         // This will be called by the admin adapter when the settings page loads
         function load(settings, onChange) {
             // example: select elements with id=key and class=value and insert value
             if (!settings) return;
+
+            devices = settings.devices;
+            values2table('values', devices, onChange);
+
             $('.value').each(function () {
                 var $key = $(this);
                 var id = $key.attr('id');
@@ -55,6 +61,17 @@
                     obj[$this.attr('id')] = $this.val();
                 }
             });
+            var temp = table2values('values');
+            $.each(temp, function (i, val) {
+                if (val.name.indexOf(' ') !== -1) {
+                    showToast(_('No spaces in device name'));
+                }
+                temp[i].name = temp[i].name.replace(/ /g, '_');
+
+                if (i + 1 === temp.length) {
+                    obj.devices = temp
+                }
+            });
             callback(obj);
         }
     </script>
@@ -66,15 +83,56 @@
     <div class="m adapter-container">
 
         <div class="row">
-            <div class="col s12 m4 l2">
-                <img src="miio.png" class="logo">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s5 tab-devices"><a href="#tab-devices" class="translate">Devices Management</a></li>
+                    <li class="tab col s5 tab-settings"><a href="#tab-settings" class="translate">Communication Settings</a></li>
+                </ul>
+            </div>
+            <div id="tab-devices" class="col s12 page">
+                <div class="row">
+                    <div class="col s6 m4 l2">
+                        <img src="miio.png" class="logo">
+                    </div>
+                </div>
+                <div class="row tab-devices-toolbar" id="values">
+                    <div class="col s2 m1 l1 center">
+                        <button class="table-button-add btn-floating waves-effect waves-light btn-small">
+                            <i class="material-icons">add</i></button>
+                    </div>
+
+                    <div class="col s2 ">
+                        <div class="loader seenot" id="loader1"> </div>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <table class="table-values" style="width: 100%; margin-top: 8px">
+                            <thead>
+                                <tr>
+                                    <th data-name="_index" style="width: 40px" class="translate"></th>
+
+                                    <th data-name="name" style="width: 30%" class="translate">Name</th>
+                                    <th data-name="ip" class="translate">IP adress</th>
+                                    <th data-name="token" class="translate">Token</th>
+                                    <th data-name="miioId" class="translate">miIO ID</th>
+                                    <th data-name="miioType" class="translate">miIO Type</th>
+                                    <th data-buttons="delete" style="width: 40px"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-settings" class="col s12 page">
+                <div class="row">
+                    <div class="col s6 m4 l2">
+                        <img src="miio.png" class="logo">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Put your content here -->
-
         <!-- For example columns with settings: -->
-        <div class="row">
+        <!--<div class="row">
             <div class="col s6 input-field">
                 <input type="checkbox" class="value" id="option1" />
                 <label for="option1" class="translate">option1</label>
@@ -84,7 +142,7 @@
                 <input type="text" class="value" id="option2" />
                 <label for="option2" class="translate">option2</label>
             </div>
-        </div>
+        </div>-->
 
     </div>
 
