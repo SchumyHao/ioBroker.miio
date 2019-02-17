@@ -14,28 +14,88 @@ systemDictionary = {
         "pl": "Ustawienia adaptera dla miio",
         "zh-cn": "miio的适配器设置"
     },
-    "option1": {
-        "en": "option1",
-        "de": "Option 1",
-        "ru": "Опция 1",
-        "pt": "Opção 1",
-        "nl": "Optie 1",
-        "fr": "Option 1",
-        "it": "opzione 1",
-        "es": "Opción 1",
-        "pl": "opcja 1",
-        "zh-cn": "选项1"
+    "Devices Management": {
+        "en": "Devices Management",
+        "de": "Geräteverwaltung",
+        "ru": "Управление устройствами",
+        "pt": "Gerenciamento de Dispositivos",
+        "nl": "Apparatenbeheer",
+        "fr": "Gestion des appareils",
+        "it": "Gestione dei dispositivi",
+        "es": "Gestión de dispositivos",
+        "pl": "Zarządzanie urządzeniami",
+        "zh-cn": "设备管理"
     },
-    "option2": {
-        "en": "option2",
-        "de": "Option 2",
-        "ru": "option2",
-        "pt": "opção 2",
-        "nl": "Optie 2",
-        "fr": "Option 2",
-        "it": "opzione 2",
-        "es": "opcion 2",
-        "pl": "Opcja 2",
-        "zh-cn": "选项2"
+    "Communication Settings": {
+        "en": "Communication Settings",
+        "de": "Kommunikationseinstellungen",
+        "ru": "Настройки связи",
+        "pt": "Configurações de comunicação",
+        "nl": "Communicatie-instellingen",
+        "fr": "Paramètres de communication",
+        "it": "Impostazioni di comunicazione",
+        "es": "Ajustes de comunicación",
+        "pl": "Ustawienia komunikacji",
+        "zh-cn": "通信设置"
+    },
+    "Name": {
+        "en": "Device Name(optional)",
+        "de": "Gerätename (optional)",
+        "ru": "Имя устройства (необязательно)",
+        "pt": "Nome do dispositivo (opcional)",
+        "nl": "Apparaatnaam (optioneel)",
+        "fr": "Nom du périphérique (facultatif)",
+        "it": "Nome dispositivo (facoltativo)",
+        "es": "Nombre del dispositivo (opcional)",
+        "pl": "Nazwa urządzenia (opcjonalnie)",
+        "zh-cn": "设备名称（可选）"
+    },
+    "IP adress": {
+        "en": "IP adress",
+        "de": "IP Adresse",
+        "ru": "айпи адрес",
+        "pt": "endereço de IP",
+        "nl": "IP adres",
+        "fr": "adresse IP",
+        "it": "indirizzo IP",
+        "es": "dirección IP",
+        "pl": "adres IP",
+        "zh-cn": "IP地址"
+    },
+    "Token": {
+        "en": "Token",
+        "de": "Zeichen",
+        "ru": "знак",
+        "pt": "Símbolo",
+        "nl": "blijk",
+        "fr": "Jeton",
+        "it": "Gettone",
+        "es": "Simbólico",
+        "pl": "Znak",
+        "zh-cn": "密钥"
+    },
+    "miIO ID": {
+        "en": "miIO ID(optional)",
+        "de": "miIO ID (optional)",
+        "ru": "miIO ID (необязательно)",
+        "pt": "ID miIO (opcional)",
+        "nl": "miIO ID (optioneel)",
+        "fr": "miIO ID (facultatif)",
+        "it": "ID miIO (opzionale)",
+        "es": "ID de miIO (opcional)",
+        "pl": "miIO ID (opcjonalnie)",
+        "zh-cn": "miIO ID（可选）"
+    },
+    "miIO Type": {
+        "en": "miIO Type(optional)",
+        "de": "miIO Type (optional)",
+        "ru": "Тип miIO (необязательно)",
+        "pt": "Tipo miIO (opcional)",
+        "nl": "miIO-type (optioneel)",
+        "fr": "Type miIO (facultatif)",
+        "it": "Tipo miIO (opzionale)",
+        "es": "Tipo miIO (opcional)",
+        "pl": "miIO Type (opcjonalnie)",
+        "zh-cn": "miIO类型（可选）"
     }
 };
