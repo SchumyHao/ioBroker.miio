@@ -86,7 +86,7 @@
             <div class="col s12">
                 <ul class="tabs">
                     <li class="tab col s5 tab-devices"><a href="#tab-devices" class="translate">Devices Management</a></li>
-                    <li class="tab col s5 tab-settings"><a href="#tab-settings" class="translate">Communication Settings</a></li>
+                    <!--<li class="tab col s5 tab-settings"><a href="#tab-settings" class="translate">Communication Settings</a></li>-->
                 </ul>
             </div>
             <div id="tab-devices" class="col s12 page">
@@ -113,37 +113,28 @@
                                     <th data-name="name" style="width: 30%" class="translate">Name</th>
                                     <th data-name="ip" class="translate">IP adress</th>
                                     <th data-name="token" class="translate">Token</th>
-                                    <th data-name="miioId" class="translate">miIO ID</th>
-                                    <th data-name="miioType" class="translate">miIO Type</th>
                                     <th data-buttons="delete" style="width: 40px"></th>
                                 </tr>
                             </thead>
                         </table>
                     </div>
                 </div>
+                <div class="col s6 input-field">
+                    <input type="checkbox" class="value" id="autoDiscover" />
+                    <label for="autoDiscover" class="translate">auto discover devices</label>
+                </div><div class="col s6 input-field">
+                    <input type="text" class="value" id="autoDiscoverTimeout" />
+                    <label for="autoDiscoverTimeout" class="translate">auto discover devices wait time</label>
+                </div>
             </div>
-            <div id="tab-settings" class="col s12 page">
+            <!--<div id="tab-settings" class="col s12 page">
                 <div class="row">
                     <div class="col s6 m4 l2">
                         <img src="miio.png" class="logo">
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
-
-        <!-- For example columns with settings: -->
-        <!--<div class="row">
-            <div class="col s6 input-field">
-                <input type="checkbox" class="value" id="option1" />
-                <label for="option1" class="translate">option1</label>
-            </div>
-
-            <div class="col s6 input-field">
-                <input type="text" class="value" id="option2" />
-                <label for="option2" class="translate">option2</label>
-            </div>
-        </div>-->
-
     </div>
 
 </body>

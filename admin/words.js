@@ -97,5 +97,29 @@ systemDictionary = {
         "es": "Tipo miIO (opcional)",
         "pl": "miIO Type (opcjonalnie)",
         "zh-cn": "miIO类型（可选）"
+    },
+    "auto discover devices": {
+        "en": "auto discover devices",
+        "de": "Geräte automatisch erkennen",
+        "ru": "устройства с автоматическим обнаружением",
+        "pt": "dispositivos de descoberta automática",
+        "nl": "auto-detectie apparaten",
+        "fr": "dispositifs de découverte automatique",
+        "it": "auto scoprire dispositivi",
+        "es": "dispositivos de auto descubrimiento",
+        "pl": "automatyczne wykrywanie urządzeń",
+        "zh-cn": "自动发现设备"
+    },
+    "auto discover devices wait time": {
+        "en": "auto discover devices wait time (second)",
+        "de": "automatische Erkennung der Gerätewartezeit (Sekunde)",
+        "ru": "время ожидания устройств автоматического обнаружения (секунда)",
+        "pt": "auto descobrir tempo de espera de dispositivos (segundo)",
+        "nl": "automatische detectie apparaten wachttijd (tweede)",
+        "fr": "temps d'attente des périphériques de découverte automatique (en secondes)",
+        "it": "auto discovery device wait time (secondo)",
+        "es": "dispositivos de auto descubrimiento tiempo de espera (segundo)",
+        "pl": "automatyczne wykrywanie urządzeń czas oczekiwania (drugi)",
+        "zh-cn": "自动发现设备等待时间（秒）"
     }
 };
