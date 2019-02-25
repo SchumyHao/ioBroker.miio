@@ -313,6 +313,7 @@ class Miio extends utils.Adapter {
                 this.miioAdapterUpdateState(this.generateChannelID(id), d);
             });
             this.miioController.listen();
+            this.setConnected(true);
         });
     }
 }

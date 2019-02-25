@@ -88,6 +88,8 @@
         ]
     },
     "native": {
+        "autoDiscover": true,
+        "autoDiscoverTimeout": "30"
     },
     "objects": [],
     "instanceObjects": []

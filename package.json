@@ -1,7 +1,7 @@
 {
   "name": "iobroker.miio",
   "version": "0.0.1",
-  "description": "This adapte controls devices whic followed miIO protocol.",
+  "description": "This adapter controls devices which followed miIO protocol.",
   "author": {
     "name": "SchumyHao",
     "email": "schumyhaojl@126.com"
