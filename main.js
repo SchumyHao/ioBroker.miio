@@ -22,11 +22,11 @@ class Miio extends utils.Adapter {
             ...options,
             name: "miio",
         });
-        this.on("ready", this.onReady);
-        this.on("objectChange", this.onObjectChange);
-        this.on("stateChange", this.onStateChange);
-        this.on("message", this.onMessage);
-        this.on("unload", this.onUnload);
+        this.on("ready", this.onReady.bind(this));
+        this.on("objectChange", this.onObjectChange.bind(this));
+        this.on("stateChange", this.onStateChange.bind(this));
+        this.on("message", this.onMessage.bind(this));
+        this.on("unload", this.onUnload.bind(this));
         //Save latest miio adapter objects.
         this.miioObjects = {};
         //Save objects that updated before created.
