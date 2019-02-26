@@ -1,6 +1,9 @@
 {
   "name": "iobroker.miio",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=8.12"
+  },
   "description": "This adapter controls devices which followed miIO protocol.",
   "author": {
     "name": "SchumyHao",
