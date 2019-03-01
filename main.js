@@ -225,20 +225,17 @@ class Miio extends utils.Adapter {
     miioAdapterCreateDevice(dev, callback) {
         const id = this.generateChannelID(dev.miioInfo.id);
         const isInitTasks = !this.tasks.length;
+        const states = dev.device.getDeviceState();
 
-        if (dev.adapterInfo) {
-            for (const state in dev.adapterInfo.states) {
-                if (!dev.adapterInfo.states.hasOwnProperty(state)) continue;
-                this.log.info(`Create state object ${id}.${state}`);
-                this.tasks.push({
-                    _id: `${id}.${state}`,
-                    common: dev.adapterInfo.states[state],
-                    type: "state",
-                    native: {}
-                });
-            }
-        } else {
-            this.log.error(`Device ${dev.miioInfo.model} not found`);
+        for (const state in states) {
+            if (!states.hasOwnProperty(state)) continue;
+            this.log.info(`Create state object ${id}.${state}`);
+            this.tasks.push({
+                _id: `${id}.${state}`,
+                common: states[state],
+                type: "state",
+                native: {}
+            });
         }
 
         this.tasks.push({
@@ -301,10 +298,10 @@ class Miio extends utils.Adapter {
             // New device need add to adapter.
             this.miioController.on("device", (dev) => {
                 if (!this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
-                    this.log.info("New device: " + dev.adapterInfo.fullName);
+                    this.log.info("New device: " + dev.miioInfo.model + dev.miioInfo.id);
                     this.miioAdapterCreateDevice(dev);
                 } else {
-                    this.log.info("Known device: " + dev.adapterInfo.fullName);
+                    this.log.info("Known device: " + dev.miioInfo.model + dev.miioInfo.id);
                 }
             });
             this.miioController.on("data", (id, state, val) => {
