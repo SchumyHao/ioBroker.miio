@@ -89,6 +89,7 @@ class Miio extends utils.Adapter {
 
             if (this.miioObjects[channelId] && this.miioObjects[channelId].native) {
                 //TODO: remove this log
+                val = val.val;
                 this.log.info(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
                 this.miioController.setState(this.miioObjects[channelId].native.id, state, val);
             }
@@ -298,7 +299,7 @@ class Miio extends utils.Adapter {
             // New device need add to adapter.
             this.miioController.on("device", (dev) => {
                 if (!this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
-                    this.log.info("New device: " + dev.miioInfo.model + dev.miioInfo.id);
+                    this.log.info(`New device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
                     this.miioAdapterCreateDevice(dev);
                 } else {
                     this.log.info("Known device: " + dev.miioInfo.model + dev.miioInfo.id);
