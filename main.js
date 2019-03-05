@@ -12,6 +12,9 @@ const Controller = require("./lib/miio");
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
+/**
+ * @class
+ */
 class Miio extends utils.Adapter {
 
     /**
@@ -248,7 +251,8 @@ class Miio extends utils.Adapter {
     }
 
     /**
-     * @param {} dev
+     * @this {AdapterMiio.Miio}
+     * @param {AdapterMiio.ControllerDevice} dev
      */
     miioAdapterCreateDevice(dev) {
         const id = this.generateChannelID(dev.miioInfo.id);
@@ -310,40 +314,24 @@ class Miio extends utils.Adapter {
             this.miioController = new Controller({
                 devicesDefined: this.config.devices,
                 autoDiscover: this.config.autoDiscover || true,
-                autoDiscoverTimeout: this.config.autoDiscoverTimeout || 30 // 30s
+                autoDiscoverTimeout: parseInt(this.config.autoDiscoverTimeout || "30") //
             });
 
-            this.miioController.on("info",
-                /**
-                 * @param {string} msg
-                 */
-                msg => this.log.info(msg));
-            this.miioController.on("warning",
-                /**
-                 * @param {string} msg
-                 */
-                msg => this.log.warn(msg));
-            this.miioController.on("error",
-                /**
-                 * @param {string} msg
-                 */
-                msg => {
-                    this.log.error(msg);
-                    this.miioAdapterStop();
-                });
+            this.miioController.on("info", /** @param {string} msg */ msg => this.log.info(msg));
+            this.miioController.on("warning", /** @param {string} msg */ msg => this.log.warn(msg));
+            this.miioController.on("error", /** @param {string} msg */ msg => {
+                this.log.error(msg);
+                this.miioAdapterStop();
+            });
             // New device need add to adapter.
-            this.miioController.on("device",
-                /**
-                 * @param {string} dev
-                 */
-                dev => {
-                    if (!this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
-                        this.log.info(`New device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
-                        this.miioAdapterCreateDevice(dev);
-                    } else {
-                        this.log.info("Known device: " + dev.miioInfo.model + dev.miioInfo.id);
-                    }
-                });
+            this.miioController.on("device", /** @param {AdapterMiio.ControllerDevice} dev */ dev => {
+                if (!this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
+                    this.log.info(`New device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
+                    this.miioAdapterCreateDevice(dev);
+                } else {
+                    this.log.info("Known device: " + dev.miioInfo.model + dev.miioInfo.id);
+                }
+            });
             this.miioController.on("data",
                 /**
                  * @param {string} id
