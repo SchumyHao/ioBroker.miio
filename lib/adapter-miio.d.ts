@@ -1,4 +1,5 @@
 import { EventEmitter } from "events";
+import { Device } from "miio";
 
 declare global {
     namespace AdapterMiio {
@@ -65,7 +66,7 @@ declare global {
         interface MiioAdapterDevice extends EventEmitter {
             deviceName: string;
             deviceType: string;
-            miioDevice: MiioLibDevice;
+            miioDevice: Device;
             states: Record<string, ioBroker.StateCommon>;
             commands: Record<string, MiioAdapterCommand>;
             transState(rw: any, ro: any , wo: any): Record<string, any>;
@@ -146,26 +147,6 @@ declare global {
 
         type MiioAdapterWOState = {
             command: MiioAdapterCommand;
-        }
-
-        interface MiioLibDeviceManagement {
-            model: string;
-            address: string;
-            token: string;
-        }
-        type MiioLibDeviceCallPara = string|number;
-        interface MiioLibDevice {
-            management: MiioLibDeviceManagement;
-            id: string;
-            destroy(): void;
-            propertyUpdated(p: string, v: any): void;
-            call(command: string, paras?: MiioLibDeviceCallPara[]): object;
-            checkOk(): void;
-            defineProperty(prop: string): void;
-        }
-        interface MiioLibRegisterInfo {
-            token: string | null | undefined;
-            id: string;
         }
     }
 }
