@@ -254,11 +254,12 @@ class Miio extends utils.Adapter {
      * @this {AdapterMiio.Miio}
      * @param {AdapterMiio.ControllerDevice} dev
      */
-    miioAdapterCreateDevice = (dev) => {
+    miioAdapterCreateDevice(dev) {
         const id = this.generateChannelID(dev.miioInfo.id);
         const isInitTasks = !this.tasks.length;
-        const states = dev.device.states;
+        const states =  dev.device.__proto__.states;
 
+        this.log.warn(JSON.stringify(states));
         for (const state in states) {
             if (!states.hasOwnProperty(state)) continue;
             this.log.info(`Create state object ${id}.${state}`);
