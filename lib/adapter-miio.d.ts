@@ -84,12 +84,12 @@ declare global {
         }
 
         type MiioAdapterCommandPara = {
-            type: string;
-            vtype?: string;
+            type: ioBroker.CommonType;
+            vtype?: ioBroker.CommonType;
             max?: number;
             min?: number;
             unit?: string;
-            enum?: number|string[];
+            enum?: (number|string)[];
             obj?: Record<string, number|string>;
             default?: string|number;
         }
@@ -105,19 +105,20 @@ declare global {
 
         type MiioAdapterPropertyOpt = {
             name: string;
+            type: ioBroker.CommonType;
             desc?: string;
-            type: string;
-            vtype?: string
+            vtype?: ioBroker.CommonType;
             min?: number;
             max?: number;
             unit?: string;
             obj?: Record<string, number|string|boolean>;
             statePara?: MiioAdapterPropertyPara;
+            enum?: (string|number)[];
         }
 
         type MiioAdapterPropertyPara = {
-            type: string;
-            vtype?: string;
+            type: ioBroker.CommonType;
+            vtype?: ioBroker.CommonType;
             min?: number;
             max?: number;
             unit?: string;
@@ -127,8 +128,8 @@ declare global {
             prop: string;
             name: string;
             desc?: string;
-            type: string;
-            vtype?: string
+            type: ioBroker.CommonType;
+            vtype?: ioBroker.CommonType
             min?: number;
             max?: number;
             unit?: string;
@@ -148,5 +149,6 @@ declare global {
         type MiioAdapterWOState = {
             command: MiioAdapterCommand;
         }
+
     }
 }

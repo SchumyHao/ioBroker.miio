@@ -5,18 +5,25 @@ declare module 'miio' {
         token: string;
     }
     type DeviceCallPara = string|number;
+    type RegisterInfo = {
+        address: string;
+        token?: string;
+        id?: string;
+    }
+    type browsePara = {
+        cacheTime: number
+    }
 
     interface Device {
         management: DeviceManagement;
         id: string;
         destroy(): void;
         propertyUpdated(p: string, v: any): void;
-        call(command: string, paras?: DeviceCallPara[]): object;
+        call(command: string, paras?: DeviceCallPara[]): any;
         checkOk(): void;
         defineProperty(prop: string): void;
     }
-    interface RegisterInfo {
-        token: string | null | undefined;
-        id: string;
-    }
+
+    function device(para: RegisterInfo): any;
+    function browse(para: browsePara): any;
 }
