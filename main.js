@@ -257,7 +257,7 @@ class Miio extends utils.Adapter {
     miioAdapterCreateDevice(dev) {
         const id = this.generateChannelID(dev.miioInfo.id);
         const isInitTasks = !this.tasks.length;
-        const states =  dev.device.__proto__.states;
+        const states =  dev.device.states;
 
         for (const state in states) {
             if (!states.hasOwnProperty(state)) continue;
