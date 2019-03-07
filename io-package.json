@@ -89,7 +89,8 @@
     },
     "native": {
         "autoDiscover": true,
-        "autoDiscoverTimeout": "30"
+        "autoDiscoverTimeout": "30",
+        "devices": []
     },
     "objects": [],
     "instanceObjects": []

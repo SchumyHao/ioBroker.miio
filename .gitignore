@@ -2,6 +2,10 @@
 .idea
 node_modules
 nbproject
+.vscode
+lib/Properties/generate.py
+lib/Properties/proplist
+test.js
 
 # npm package files
 iobroker.*.tgz

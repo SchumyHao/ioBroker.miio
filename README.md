@@ -10,8 +10,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.miio.png?downloads=true)](https://nodei.co/npm/iobroker.miio/)
 
-**Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/SchumyHao/ioBroker.miio/master.svg)](https://travis-ci.org/SchumyHao/ioBroker.miio)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/SchumyHao/ioBroker.miio?branch=master&svg=true)](https://ci.appveyor.com/project/SchumyHao/ioBroker-miio/)
+**Tests:** Linux/Mac/Windows: [![Travis-CI](http://img.shields.io/travis/SchumyHao/ioBroker.miio/master.svg)](https://travis-ci.org/SchumyHao/ioBroker.miio)
 
 ## miio adapter for ioBroker
 
