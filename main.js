@@ -329,7 +329,7 @@ class Miio extends utils.Adapter {
                     this.log.info(`New device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
                     this.miioAdapterCreateDevice(dev);
                 } else {
-                    this.log.info("Known device: " + dev.miioInfo.model + dev.miioInfo.id);
+                    this.log.info(`Known device: ${dev.miioInfo.model} ${dev.miioInfo.id}`);
                 }
             });
             this.miioController.on("data",
