@@ -63,24 +63,6 @@
         "compact": true,
         "materialize": true,
         "materializeTab": true,
-        "adminTab": {
-            "singleton": true,
-            "name": {
-                "en": "Xiaomi miIO protocol device",
-                "de": "Xiaomi miIO Protokollgerät",
-                "ru": "Протокол протокола Xiaomi miIO",
-                "pt": "Dispositivo de protocolo miIO Xiaomi",
-                "nl": "Xiaomi miIO-protocolapparaat",
-                "fr": "Périphérique de protocole Xiaomi miIO",
-                "it": "Dispositivo protocollo Xiaomi miIO",
-                "es": "Dispositivo de protocolo Xiaomi miIO",
-                "pl": "Urządzenie protokołu Xiaomi miIO",
-                "zh-cn": "小米miIO协议设备"
-            },
-            "link": "",
-            "fa-icon": "info"
-        },
-        "supportCustoms": true,
         "dependencies": [
             {
                 "admin": ">=3.0.0"
