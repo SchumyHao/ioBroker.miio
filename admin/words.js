@@ -121,5 +121,17 @@ systemDictionary = {
         "es": "dispositivos de auto descubrimiento tiempo de espera (segundo)",
         "pl": "automatyczne wykrywanie urządzeń czas oczekiwania (drugi)",
         "zh-cn": "自动发现设备等待时间（秒）"
+    },
+    "Polling": {
+        "en": "poll duration(ms)",
+        "de": "Abfragedauer (ms)",
+        "ru": "длительность опроса (мс)",
+        "pt": "duração da enquete (ms)",
+        "nl": "poll-duur (ms)",
+        "fr": "durée d'interrogation (ms)",
+        "it": "durata del sondaggio (ms)",
+        "es": "duración de la encuesta (ms)",
+        "pl": "czas trwania ankiety (ms)",
+        "zh-cn": "轮询间隔（毫秒）"
     }
 };

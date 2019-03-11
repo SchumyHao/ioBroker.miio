@@ -28,6 +28,8 @@ declare global {
         type ControllerOptionDeviceDefine = {
             ip: string;
             token: string;
+            name?: string;
+            polling?: number;
         };
         type ControllerOption = {
             devicesDefined?: ControllerOptionDeviceDefine[];
@@ -50,15 +52,10 @@ declare global {
             version: string;
             model: string;
         }
-        type ControllerDeviceConfigData = {
-            name: string;
-            ip: string;
-            token: string;
-        }
         type ControllerDeviceMiioDevice = MiioAdapterDevice
         type ControllerDevice = {
             miioInfo: ControllerDeviceMiioInfo;
-            configData: ControllerDeviceConfigData;
+            configData: ControllerOptionDeviceDefine;
             autoDiscovered: boolean;
             device: ControllerDeviceMiioDevice;
         }

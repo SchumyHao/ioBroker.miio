@@ -22,6 +22,7 @@ declare module 'miio' {
         call(command: string, paras?: DeviceCallPara[]): any;
         checkOk(): void;
         defineProperty(prop: string): void;
+        updatePollDuration(ms: number): void;
     }
 
     function device(para: RegisterInfo): any;
