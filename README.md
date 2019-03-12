@@ -3,7 +3,7 @@
     ioBroker.miio
 </h1>
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.miio.svg)](https://www.npmjs.com/package/iobroker.miio)
+![Number of Installations](http://iobroker.live/badges/miio-installed.svg) ![Number of Installations](http://iobroker.live/badges/miio-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.miio.svg)](https://www.npmjs.com/package/iobroker.miio)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.miio.svg)](https://www.npmjs.com/package/iobroker.miio)
 [![Dependency Status](https://img.shields.io/david/SchumyHao/iobroker.miio.svg)](https://david-dm.org/SchumyHao/iobroker.miio)
 [![Known Vulnerabilities](https://snyk.io/test/github/SchumyHao/ioBroker.miio/badge.svg)](https://snyk.io/test/github/SchumyHao/ioBroker.miio)
