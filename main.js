@@ -26,9 +26,9 @@ class Miio extends utils.Adapter {
             name: "miio",
         });
         this.on("ready", this.onReady.bind(this));
-        this.on("objectChange", this.onObjectChange.bind(this));
+        // this.on("objectChange", this.onObjectChange.bind(this)); // not used
         this.on("stateChange", this.onStateChange.bind(this));
-        this.on("message", this.onMessage.bind(this));
+        // this.on("message", this.onMessage.bind(this)); // not used
         this.on("unload", this.onUnload.bind(this));
 
         /**
@@ -71,20 +71,22 @@ class Miio extends utils.Adapter {
         callback && callback();
     }
 
-    /**
-     * Is called if a subscribed object changes
-     * @param {string} id
-     * @param {ioBroker.Object | null | undefined} obj
-     */
-    onObjectChange(id, obj) {
-        if (obj) {
-            // The object was changed
-            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-        } else {
-            // The object was deleted
-            this.log.info(`object ${id} deleted`);
-        }
-    }
+    // // In case you don't need actions on object changes this part can be deleted / disabled
+    // /**
+    //  * Is called if a subscribed object changes
+    //  * @param {string} id
+    //  * @param {ioBroker.Object | null | undefined} obj
+    //  */
+
+    // onObjectChange(id, obj) {
+    //     if (obj) {
+    //         // The object was changed
+    //         this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+    //     } else {
+    //         // The object was deleted
+    //         this.log.info(`object ${id} deleted`);
+    //     }
+    // }
 
     /**
      * Is called if a subscribed state changes
@@ -107,28 +109,30 @@ class Miio extends utils.Adapter {
             if (this.miioObjects[channelId] && this.miioObjects[channelId].native) {
                 //TODO: remove this log
                 val = val.val;
-                this.log.info(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
+                this.log.silly(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
                 this.miioController.setState(this.miioObjects[channelId].native.id, state, val);
             }
         }
     }
 
-    /**
-     * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-     * Using this method requires "common.message" property to be set to true in io-package.json
-     * @param {ioBroker.Message} obj
-     */
-    onMessage(obj) {
-        if (typeof obj === "object" && obj.message) {
-            if (obj.command === "send") {
-                // e.g. send email or pushover or whatever
-                this.log.info("send command");
+    // // In case you don't need actions on received messages this part can be deleted / disabled 
+    // /**
+    //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
+    //  * Using this method requires "common.message" property to be set to true in io-package.json
+    //  * @param {ioBroker.Message} obj
+    //  */
+    
+    // onMessage(obj) {
+    //     if (typeof obj === "object" && obj.message) {
+    //         if (obj.command === "send") {
+    //             // e.g. send email or pushover or whatever
+    //             this.log.info("send command");
 
-                // Send response in callback if required
-                if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
-            }
-        }
-    }
+    //             // Send response in callback if required
+    //             if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
+    //         }
+    //     }
+    // }
 
     /**
      * Is called to set adapter connection status
@@ -174,6 +178,7 @@ class Miio extends utils.Adapter {
         if (this.miioObjects[id] ||
             this.miioObjects[id + "." + state]) {
             //TODO: what if only id exist?
+            // Why setting it in foreign state, I would expect the code to set states within its own namespace ?
             this.setForeignState(id + "." + state, val, true);
         } else {
             this.delayed[id + "." + state] = val;
@@ -195,6 +200,7 @@ class Miio extends utils.Adapter {
                 if (!oObj) {
                     //No obj._id data stored in database. Just set this obj
                     instant.miioObjects[obj._id] = obj;
+                    // Set object wil only update the value if not already exist, maybe its better to use " instant.extendObject "" ? 
                     instant.setForeignObject(obj._id, obj, () => {
                         if (instant.delayed[obj._id] !== undefined) {
                             instant.setForeignState(obj._id, instant.delayed[obj._id], true, () => {
@@ -212,9 +218,11 @@ class Miio extends utils.Adapter {
                         if (obj.common.hasOwnProperty(a) &&
                             a !== "name" &&
                             a !== "icon" &&
+                            //@ts-ignore element can be of type any, no issue for functionality
                             oObj.common[a] !== obj.common[a]) {
                             // object value need update.
                             changed = true;
+                            //@ts-ignore element can be of type any, no issue for functionality
                             oObj.common[a] = obj.common[a];
                         }
                     }
@@ -226,6 +234,7 @@ class Miio extends utils.Adapter {
 
                     instant.miioObjects[obj._id] = oObj;
                     if (changed) {
+                        // Set object wil only update the value if not already exist, maybe its better to use " instant.extendObject "" ? 
                         instant.setForeignObject(oObj._id, oObj, () => {
                             if (instant.delayed[oObj._id] !== undefined) {
                                 instant.setForeignState(oObj._id, instant.delayed[oObj._id], true, () => {
@@ -348,6 +357,7 @@ class Miio extends utils.Adapter {
     }
 }
 
+//@ts-ignore parent is not declared in core, can be ignored
 if (module.parent) {
     // Export the constructor in compact mode
     /**
