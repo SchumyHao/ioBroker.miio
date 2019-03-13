@@ -43,7 +43,7 @@ class Miio extends utils.Adapter {
         this.delayed = {};
         /**
          * Save objects that needed to register.
-         * @type {ioBroker.BaseObject[]}
+         * @type {ioBroker.Object[]}
          */
         this.tasks = [];
         /**
@@ -181,7 +181,7 @@ class Miio extends utils.Adapter {
     }
 
     /**
-     * @param {AdapterMiio.Miio} instant
+     * @param {Miio} instant
      */
     miioAdapterSyncObjects(instant) {
         // This obj is obj with new value
@@ -251,7 +251,7 @@ class Miio extends utils.Adapter {
     }
 
     /**
-     * @this {AdapterMiio.Miio}
+     * 
      * @param {AdapterMiio.ControllerDevice} dev
      */
     miioAdapterCreateDevice(dev) {
@@ -348,6 +348,7 @@ class Miio extends utils.Adapter {
     }
 }
 
+// @ts-ignore parent is not declared in core, can be ignored
 if (module.parent) {
     // Export the constructor in compact mode
     /**
