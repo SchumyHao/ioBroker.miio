@@ -88,9 +88,8 @@ class Miio extends utils.Adapter {
             const state = id.substring(pos + 1);
 
             if (this.miioObjects[channelId] && this.miioObjects[channelId].native) {
-                //TODO: remove this log
                 val = val.val;
-                this.log.info(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
+                this.log.silly(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
                 this.miioController.setState(this.miioObjects[channelId].native.id, state, val);
             }
         }
