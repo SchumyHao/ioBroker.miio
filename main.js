@@ -206,7 +206,7 @@ class Miio extends utils.Adapter {
 
                     instant.miioObjects[obj._id] = oObj;
                     if (changed) {
-                        instant.setObject(oObj._id, oObj, () => {
+                        instant.extendObject(oObj._id, oObj, () => {
                             if (instant.delayed[oObj._id] !== undefined) {
                                 instant.setState(oObj._id, instant.delayed[oObj._id], true, () => {
                                     delete instant.delayed[oObj._id];
