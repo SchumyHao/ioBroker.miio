@@ -26,9 +26,7 @@ class Miio extends utils.Adapter {
             name: "miio",
         });
         this.on("ready", this.onReady.bind(this));
-        this.on("objectChange", this.onObjectChange.bind(this));
         this.on("stateChange", this.onStateChange.bind(this));
-        this.on("message", this.onMessage.bind(this));
         this.on("unload", this.onUnload.bind(this));
 
         /**
@@ -43,7 +41,7 @@ class Miio extends utils.Adapter {
         this.delayed = {};
         /**
          * Save objects that needed to register.
-         * @type {ioBroker.BaseObject[]}
+         * @type {ioBroker.Object[]}
          */
         this.tasks = [];
         /**
@@ -72,21 +70,6 @@ class Miio extends utils.Adapter {
     }
 
     /**
-     * Is called if a subscribed object changes
-     * @param {string} id
-     * @param {ioBroker.Object | null | undefined} obj
-     */
-    onObjectChange(id, obj) {
-        if (obj) {
-            // The object was changed
-            this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-        } else {
-            // The object was deleted
-            this.log.info(`object ${id} deleted`);
-        }
-    }
-
-    /**
      * Is called if a subscribed state changes
      * @param {string} id
      * @param {ioBroker.State | null | undefined} val
@@ -100,32 +83,15 @@ class Miio extends utils.Adapter {
             return;
         }
         if (this.miioController) {
-            const pos = id.lastIndexOf(".");
-            const channelId = id.substring(0, pos);
-            const state = id.substring(pos + 1);
+            const channelEnd = id.lastIndexOf(".");
+            const channelStart = id.indexOf(".", id.indexOf(".") + 1) + 1;
+            const channelId = id.substring(channelStart, channelEnd);
+            const state = id.substring(channelEnd + 1);
 
             if (this.miioObjects[channelId] && this.miioObjects[channelId].native) {
-                //TODO: remove this log
                 val = val.val;
-                this.log.info(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
+                this.log.silly(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
                 this.miioController.setState(this.miioObjects[channelId].native.id, state, val);
-            }
-        }
-    }
-
-    /**
-     * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-     * Using this method requires "common.message" property to be set to true in io-package.json
-     * @param {ioBroker.Message} obj
-     */
-    onMessage(obj) {
-        if (typeof obj === "object" && obj.message) {
-            if (obj.command === "send") {
-                // e.g. send email or pushover or whatever
-                this.log.info("send command");
-
-                // Send response in callback if required
-                if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
             }
         }
     }
@@ -145,10 +111,24 @@ class Miio extends utils.Adapter {
     }
 
     /**
+     */
+    getSelfObjectIDPrefix() {
+        return "devices";
+    }
+
+    /**
      * @param {string} id
      */
     generateChannelID(id) {
         return this.getObjectIDPrefix() + "." + id;
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     */
+    generateSelfChannelID(id) {
+        return this.getSelfObjectIDPrefix() + "." + id;
     }
 
     /**
@@ -174,14 +154,14 @@ class Miio extends utils.Adapter {
         if (this.miioObjects[id] ||
             this.miioObjects[id + "." + state]) {
             //TODO: what if only id exist?
-            this.setForeignState(id + "." + state, val, true);
+            this.setState(id + "." + state, val, true);
         } else {
             this.delayed[id + "." + state] = val;
         }
     }
 
     /**
-     * @param {AdapterMiio.Miio} instant
+     * @param {Miio} instant
      */
     miioAdapterSyncObjects(instant) {
         // This obj is obj with new value
@@ -190,14 +170,14 @@ class Miio extends utils.Adapter {
             return;
         }
 
-        instant.getForeignObject(obj._id,
+        instant.getObject(obj._id,
             (err, oObj) => {
                 if (!oObj) {
                     //No obj._id data stored in database. Just set this obj
                     instant.miioObjects[obj._id] = obj;
-                    instant.setForeignObject(obj._id, obj, () => {
+                    instant.setObject(obj._id, obj, () => {
                         if (instant.delayed[obj._id] !== undefined) {
-                            instant.setForeignState(obj._id, instant.delayed[obj._id], true, () => {
+                            instant.setState(obj._id, instant.delayed[obj._id], true, () => {
                                 delete instant.delayed[obj._id];
                                 setImmediate(instant.miioAdapterSyncObjects, instant);
                             });
@@ -226,9 +206,9 @@ class Miio extends utils.Adapter {
 
                     instant.miioObjects[obj._id] = oObj;
                     if (changed) {
-                        instant.setForeignObject(oObj._id, oObj, () => {
+                        instant.extendObject(oObj._id, oObj, () => {
                             if (instant.delayed[oObj._id] !== undefined) {
-                                instant.setForeignState(oObj._id, instant.delayed[oObj._id], true, () => {
+                                instant.setState(oObj._id, instant.delayed[oObj._id], true, () => {
                                     delete instant.delayed[oObj._id];
                                     setImmediate(instant.miioAdapterSyncObjects, instant);
                                 });
@@ -238,7 +218,7 @@ class Miio extends utils.Adapter {
                         });
                     } else {
                         if (instant.delayed[oObj._id] !== undefined) {
-                            instant.setForeignState(oObj._id, instant.delayed[oObj._id], true, () => {
+                            instant.setState(oObj._id, instant.delayed[oObj._id], true, () => {
                                 delete instant.delayed[oObj._id];
                                 setImmediate(instant.miioAdapterSyncObjects, instant);
                             });
@@ -251,11 +231,11 @@ class Miio extends utils.Adapter {
     }
 
     /**
-     * @this {AdapterMiio.Miio}
+     * 
      * @param {AdapterMiio.ControllerDevice} dev
      */
     miioAdapterCreateDevice(dev) {
-        const id = this.generateChannelID(dev.miioInfo.id);
+        const id = this.generateSelfChannelID(dev.miioInfo.id);
         const isInitTasks = !this.tasks.length;
         const states =  dev.device.states;
 
@@ -339,7 +319,7 @@ class Miio extends utils.Adapter {
                  * @param {any} val
                  */
                 (id, state, val) => {
-                    this.miioAdapterUpdateState(this.generateChannelID(id), state, val);
+                    this.miioAdapterUpdateState(this.generateSelfChannelID(id), state, val);
                 }
             );
             this.miioController.listen();
@@ -348,6 +328,7 @@ class Miio extends utils.Adapter {
     }
 }
 
+// @ts-ignore parent is not declared in core, can be ignored
 if (module.parent) {
     // Export the constructor in compact mode
     /**

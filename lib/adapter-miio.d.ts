@@ -5,26 +5,6 @@ declare global {
     namespace AdapterMiio {
         type States = Record<string, any>;
         type Objects = Record<string, ioBroker.BaseObject>;
-        interface Miio extends ioBroker.Adapter {
-            /**
-             * Save objects that needed to register.
-             */
-            tasks: ioBroker.Object[];
-            /**
-             * Save latest miio adapter objects.
-             */
-            miioObjects: Objects;
-            /**
-             * Save objects that updated before created.
-             */
-            delayed: States;
-            /**
-             * miio Controller
-             */
-            miioController: Controller;
-
-            miioAdapterSyncObjects(instant: Miio): void;
-        }
         type ControllerOptionDeviceDefine = {
             ip: string;
             token: string;
