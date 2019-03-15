@@ -293,7 +293,7 @@ class Miio extends utils.Adapter {
             }
             this.miioController = new Controller({
                 devicesDefined: this.config.devices,
-                autoDiscover: this.config.autoDiscover || true,
+                autoDiscover: this.config.autoDiscover,
                 autoDiscoverTimeout: parseInt(this.config.autoDiscoverTimeout || "30") //
             });
 
