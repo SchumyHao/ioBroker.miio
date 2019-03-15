@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "miio",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "news": {
+            "0.0.2": {
+                "en": "Add new device support. Fix some TS lint error",
+                "de": "Neue Geräteunterstützung hinzufügen. Beheben Sie einen TS-Fusselfehler",
+                "ru": "Добавить поддержку нового устройства. Исправить ошибку TS lint",
+                "pt": "Adicionar novo suporte ao dispositivo. Corrigir algum erro de fiapos TS",
+                "nl": "Voeg nieuwe apparaatondersteuning toe. Fix een TS lint fout",
+                "fr": "Ajouter un nouveau support de périphérique. Correction d'une erreur de peluches TS",
+                "it": "Aggiungi nuovo supporto per dispositivo. Correggere alcuni errori di lint TS",
+                "es": "Añadir nuevo soporte de dispositivo. Solucionar algunos errores de pelusa TS",
+                "pl": "Dodaj nową obsługę urządzenia. Napraw niektóre błędy linków TS",
+                "zh-cn": "添加新设备支持。修复一些TS lint错误"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",

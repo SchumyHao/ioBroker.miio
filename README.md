@@ -16,7 +16,22 @@
 
 This adapter controls devices which followed miIO protocol.
 
+## Current supported device type
+
+- airfresh
+- airmonitor
+- airpurifier
+- fan
+- humidifier
+- kettle
+- light
+- plug
+- powerstrip
+- waterpuri
+
 ## Changelog
+### 0.0.2 (2019-03-15)
+* Add new device support. Fix some TS lint error
 
 ### 0.0.1
 * (SchumyHao) initial release
