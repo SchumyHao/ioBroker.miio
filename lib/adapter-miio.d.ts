@@ -67,7 +67,7 @@ declare global {
             min?: number;
             unit?: string;
             enum?: (number|string)[];
-            obj?: Record<string, number|string>;
+            obj?: Record<string, number|string|MiioAdapterCommand>;
             default?: string|number;
         }
 
