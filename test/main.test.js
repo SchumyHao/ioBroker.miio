@@ -12,7 +12,7 @@
 const { expect } = require("chai");
 // import { functionToTest } from "./moduleToTest";
 
-describe("module to test => function to test", () => {
+describe("main.js test", () => {
     // initializing logic
     const expected = 5;
 
