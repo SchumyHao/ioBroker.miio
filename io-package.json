@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "miio",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "news": {
+            "0.0.3": {
+                "en": "Add value mapper function. Add CommandInPara command",
+                "de": "Fügen Sie die Value-Mapper-Funktion hinzu. Fügen Sie den Befehl CommandInPara hinzu",
+                "ru": "Добавить функцию сопоставления значений. Добавить команду CommandInPara",
+                "pt": "Adicione a função de mapeador de valor. Adicionar comando CommandInPara",
+                "nl": "Waarde-mapper-functie toevoegen. CommandInPara-opdracht toevoegen",
+                "fr": "Ajouter une fonction de mappeur de valeur. Ajouter une commande CommandInPara",
+                "it": "Aggiungi la funzione di mappatura dei valori. Aggiungi il comando CommandInPara",
+                "es": "Agregar función de mapeador de valor. Agregar Comando CommandInPara",
+                "pl": "Funkcja dodawania mapowania wartości. Dodaj polecenie CommandInPara",
+                "zh-cn": "添加值映射器功能。添加CommandInPara命令"
+            },
             "0.0.2": {
                 "en": "Add new device support. Fix some TS lint error",
                 "de": "Neue Geräteunterstützung hinzufügen. Beheben Sie einen TS-Fusselfehler",
