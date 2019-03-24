@@ -36,8 +36,8 @@ tests.unit(path.join(__dirname, ".."), {
                         address: "127.0.0.1",
                         token: "ca82c4b695b908c0803779a606edaf3c"
                     },
-                    defineProperty: () => {},
-                    updatePollDuration: () => {}
+                    defineProperty: () => { },
+                    updatePollDuration: () => { }
                 }, true);
                 const device = controller.deviceRegistered[id];
                 expect(device.miioInfo).to.deep.equal({
@@ -191,6 +191,43 @@ tests.unit(path.join(__dirname, ".."), {
                     "unit": "°C"
                 }
             });
+            runOneDeviceTest("philips", "light", "bulb", {
+                "brightness": {
+                    "max": 100,
+                    "min": 0,
+                    "name": "brightness",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "%",
+                    "write": true
+                },
+                "colorTemperature": {
+                    "max": 100,
+                    "min": 1,
+                    "name": "colorTemperature",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "%",
+                    "write": true
+                },
+                "connected": {
+                    "desc": "Will be set to false if get property failed for 5 times",
+                    "name": "Is device connected",
+                    "read": false,
+                    "role": "indicator.reachable",
+                    "type": "boolean",
+                    "write": true
+                },
+                "power": {
+                    "name": "power",
+                    "read": true,
+                    "role": "state",
+                    "type": "boolean",
+                    "write": true
+                }
+            })
         });
     }
 });
