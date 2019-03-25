@@ -304,12 +304,18 @@ class Miio extends utils.Adapter {
                 this.miioAdapterStop();
             });
             // New device need add to adapter.
-            this.miioController.on("device", /** @param {AdapterMiio.ControllerDevice} dev */ dev => {
-                if (!this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
-                    this.log.info(`New device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
-                    this.miioAdapterCreateDevice(dev);
+            this.miioController.on("device", (/** @param {AdapterMiio.ControllerDevice} dev */ dev, /** @param {string} opt */ opt) => {
+                if (opt === "add") {
+                    if (!this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
+                        this.log.info(`New device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
+                        this.miioAdapterCreateDevice(dev);
+                    } else {
+                        this.log.info(`Known device: ${dev.miioInfo.model} ${dev.miioInfo.id}`);
+                    }
+                } else if (opt === "delete") {
+                    this.log.info(`Delete device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
                 } else {
-                    this.log.info(`Known device: ${dev.miioInfo.model} ${dev.miioInfo.id}`);
+                    this.log.warn(`Unsupported device event operation "${opt}".`);
                 }
             });
             this.miioController.on("data",
