@@ -84,8 +84,7 @@ class Miio extends utils.Adapter {
         }
         if (this.miioController) {
             const channelEnd = id.lastIndexOf(".");
-            const channelStart = id.indexOf(".", id.indexOf(".") + 1) + 1;
-            const channelId = id.substring(channelStart, channelEnd);
+            const channelId = id.substring(0, channelEnd);
             const state = id.substring(channelEnd + 1);
 
             if (this.miioObjects[channelId] && this.miioObjects[channelId].native) {
@@ -93,6 +92,8 @@ class Miio extends utils.Adapter {
                 this.log.silly(`onStateChange. state=${state} val=${JSON.stringify(val)}`);
                 this.miioController.setState(this.miioObjects[channelId].native.id, state, val);
             }
+        } else {
+            this.log.warn(`no miio controller`);
         }
     }
 
@@ -151,8 +152,8 @@ class Miio extends utils.Adapter {
      * @param {any} val
      */
     miioAdapterUpdateState(id, state, val) {
-        if (this.miioObjects[id] ||
-            this.miioObjects[id + "." + state]) {
+        if (this.miioObjects[this.namespace + "." + id] ||
+            this.miioObjects[this.namespace + "." + id + "." + state]) {
             //TODO: what if only id exist?
             this.setState(id + "." + state, val, true);
         } else {
@@ -174,7 +175,7 @@ class Miio extends utils.Adapter {
             (err, oObj) => {
                 if (!oObj) {
                     //No obj._id data stored in database. Just set this obj
-                    instant.miioObjects[obj._id] = obj;
+                    instant.miioObjects[instant.namespace + "." + obj._id] = obj;
                     instant.setObject(obj._id, obj, () => {
                         if (instant.delayed[obj._id] !== undefined) {
                             instant.setState(obj._id, instant.delayed[obj._id], true, () => {
@@ -203,8 +204,7 @@ class Miio extends utils.Adapter {
                         oObj.native = obj.native;
                     }
                     // The newest data is saved in oObj.
-
-                    instant.miioObjects[obj._id] = oObj;
+                    instant.miioObjects[instant.namespace + "." + obj._id] = oObj;
                     if (changed) {
                         instant.extendObject(oObj._id, oObj, () => {
                             if (instant.delayed[oObj._id] !== undefined) {
@@ -267,6 +267,22 @@ class Miio extends utils.Adapter {
     }
 
     /**
+     * 
+     * @param {AdapterMiio.ControllerDevice} dev
+     */
+    miioAdapterDeleteDevice(dev) {
+        const id = this.generateSelfChannelID(dev.miioInfo.id);
+        const states =  dev.device.states;
+
+        for (const state in states) {
+            if (!states.hasOwnProperty(state)) continue;
+            this.log.info(`Delete state object ${id}.${state}`);
+            this.delObject(`${id}.${state}`);
+        }
+        this.delObject(`${id}`);
+    }
+
+    /**
      */
     miioAdapterStop() {
         if (this.miioController) {
@@ -313,7 +329,12 @@ class Miio extends utils.Adapter {
                         this.log.info(`Known device: ${dev.miioInfo.model} ${dev.miioInfo.id}`);
                     }
                 } else if (opt === "delete") {
-                    this.log.info(`Delete device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
+                    if (this.miioObjects[this.generateChannelID(dev.miioInfo.id)]) {
+                        this.miioAdapterDeleteDevice(dev);
+                        this.log.info(`Delete device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
+                    } else {
+                        this.log.info(`Want to delete a non-registered device: ${dev.miioInfo.model}. ID ${dev.miioInfo.id}`);
+                    }
                 } else {
                     this.log.warn(`Unsupported device event operation "${opt}".`);
                 }
