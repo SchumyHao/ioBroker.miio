@@ -37,7 +37,8 @@ tests.unit(path.join(__dirname, ".."), {
                         token: "ca82c4b695b908c0803779a606edaf3c"
                     },
                     defineProperty: () => { },
-                    updatePollDuration: () => { }
+                    updatePollDuration: () => { },
+                    on: () => { }
                 }, true);
                 const device = controller.deviceRegistered[id];
                 expect(device.miioInfo).to.deep.equal({

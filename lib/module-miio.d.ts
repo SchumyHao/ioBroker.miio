@@ -23,7 +23,7 @@ declare module 'miio' {
         checkOk(): void;
         defineProperty(prop: string, def?: any): void;
         updatePollDuration(ms: number): void;
-        on(event: string, cb?: any)
+        on(event: string, cb?: any): void;
     }
 
     function device(para: RegisterInfo): any;
