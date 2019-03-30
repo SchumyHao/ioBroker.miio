@@ -24,6 +24,7 @@ declare module 'miio' {
         defineProperty(prop: string, def?: any): void;
         updatePollDuration(ms: number): void;
         on(event: string, cb?: any): void;
+        loadProperties(props: any): Record<string, any>;
     }
 
     function device(para: RegisterInfo): any;
