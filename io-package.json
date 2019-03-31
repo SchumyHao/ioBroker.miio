@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "miio",
-        "version": "0.0.3",
+        "version": "0.0.4",
         "news": {
+            "0.0.4": {
+                "en": "Add yunmi water purifier support. Perfect unit test",
+                "de": "Fügen Sie Yunmi-Wasserreiniger hinzu. Perfekter Gerätetest",
+                "ru": "Добавьте поддержку очистителя воды yunmi. Идеальный юнит тест",
+                "pt": "Adicione o suporte do purificador de água yunmi. Teste unitário perfeito",
+                "nl": "Voeg yunmi waterzuiveringsinstallatie-ondersteuning toe. Perfecte unit test",
+                "fr": "Ajoutez un support pour purificateur d'eau yunmi. Test unitaire parfait",
+                "it": "Aggiungi il supporto depuratore d'acqua yunmi. Test dell'unità perfetto",
+                "es": "Añadir soporte purificador de agua yunmi. Prueba de unidad perfecta",
+                "pl": "Dodaj wsparcie oczyszczania wody yunmi. Doskonały test jednostkowy",
+                "zh-cn": "添加yunmi净水器支持。完善单元测试"
+            },
             "0.0.3": {
                 "en": "Add value mapper function. Add CommandInPara command",
                 "de": "Fügen Sie die Value-Mapper-Funktion hinzu. Fügen Sie den Befehl CommandInPara hinzu",
