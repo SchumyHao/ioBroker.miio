@@ -36,9 +36,9 @@ tests.unit(path.join(__dirname, ".."), {
                         address: "127.0.0.1",
                         token: "ca82c4b695b908c0803779a606edaf3c"
                     },
-                    defineProperty: () => { },
-                    updatePollDuration: () => { },
-                    on: () => { }
+                    defineProperty: () => {},
+                    updatePollDuration: () => {},
+                    on: () => {}
                 }, true);
                 const device = controller.deviceRegistered[id];
                 expect(device.miioInfo).to.deep.equal({
@@ -228,7 +228,97 @@ tests.unit(path.join(__dirname, ".."), {
                     "type": "boolean",
                     "write": true
                 }
-            })
+            });
+            runOneDeviceTest("yunmi", "waterpuri", "lx3", {
+                "FilteredWaterTDS": {
+                    "name": "FilteredWaterTDS",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "TDS",
+                    "write": false
+                },
+                "FrontActiveCarbonFilter": {
+                    "name": "FrontActiveCarbonFilter",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "%",
+                    "write": false
+                },
+                "FrontActiveCarbonFilterDay": {
+                    "name": "FrontActiveCarbonFilterDay",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "days",
+                    "write": false
+                },
+                "PPCottonFilter": {
+                    "name": "PPCottonFilter",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "%",
+                    "write": false
+                },
+                "PPCottonFilterDay": {
+                    "name": "PPCottonFilterDay",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "days",
+                    "write": false
+                },
+                "ROFilter": {
+                    "name": "ROFilter",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "%",
+                    "write": false
+                },
+                "ROFilterDay": {
+                    "name": "ROFilterDay",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "days",
+                    "write": false
+                },
+                "RearActiveCarbonFilter": {
+                    "name": "RearActiveCarbonFilter",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "%",
+                    "write": false
+                },
+                "RearActiveCarbonFilterDay": {
+                    "name": "RearActiveCarbonFilterDay",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "days",
+                    "write": false
+                },
+                "TapWaterTDS": {
+                    "name": "TapWaterTDS",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "TDS",
+                    "write": false
+                },
+                "connected": {
+                    "desc": "Will be set to false if get property failed for 5 times",
+                    "name": "Is device connected",
+                    "read": false,
+                    "role": "indicator.reachable",
+                    "type": "boolean",
+                    "write": true
+                }
+            });
         });
     }
 });
