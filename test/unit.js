@@ -27,6 +27,22 @@ tests.unit(path.join(__dirname, ".."), {
          */
         function runOneDeviceTest(vendor, type, version, states) {
             const model = `${vendor}.${type}.${version}`;
+            states["connected"] = {
+                "desc": "Will be set to false if get property failed for 5 times",
+                "name": "Is device connected",
+                "read": true,
+                "role": "indicator.reachable",
+                "type": "boolean",
+                "write": false
+            },
+            states["model"] = {
+                "desc": "show current device's MIIO model",
+                "name": "device model",
+                "read": true,
+                "role": "state",
+                "type": "string",
+                "write": false
+            },
             it(model, () => {
                 const id = deviceId++;
                 controller.registerDevice({
@@ -61,14 +77,6 @@ tests.unit(path.join(__dirname, ".."), {
                 database.clear();
             });
             runOneDeviceTest("zhimi", "humidifier", "v3", {
-                "connected": {
-                    "name": "Is device connected",
-                    "role": "indicator.reachable",
-                    "write": true,
-                    "read": false,
-                    "type": "boolean",
-                    "desc": "Will be set to false if get property failed for 5 times"
-                },
                 "power": {
                     "write": true,
                     "read": true,
@@ -154,14 +162,6 @@ tests.unit(path.join(__dirname, ".."), {
                 }
             });
             runOneDeviceTest("chuangmi", "plug", "v3", {
-                "connected": {
-                    "name": "Is device connected",
-                    "role": "indicator.reachable",
-                    "write": true,
-                    "read": false,
-                    "type": "boolean",
-                    "desc": "Will be set to false if get property failed for 5 times"
-                },
                 "power": {
                     "write": true,
                     "read": true,
@@ -211,14 +211,6 @@ tests.unit(path.join(__dirname, ".."), {
                     "role": "state",
                     "type": "number",
                     "unit": "%",
-                    "write": true
-                },
-                "connected": {
-                    "desc": "Will be set to false if get property failed for 5 times",
-                    "name": "Is device connected",
-                    "read": false,
-                    "role": "indicator.reachable",
-                    "type": "boolean",
                     "write": true
                 },
                 "power": {
@@ -309,14 +301,6 @@ tests.unit(path.join(__dirname, ".."), {
                     "type": "number",
                     "unit": "TDS",
                     "write": false
-                },
-                "connected": {
-                    "desc": "Will be set to false if get property failed for 5 times",
-                    "name": "Is device connected",
-                    "read": false,
-                    "role": "indicator.reachable",
-                    "type": "boolean",
-                    "write": true
                 }
             });
         });
