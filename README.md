@@ -30,6 +30,9 @@ This adapter controls devices which followed miIO protocol.
 - waterpuri
 
 ## Changelog
+### 0.0.5 (2019-04-04)
+* Fix URL mis-match issue
+
 ### 0.0.4 (2019-03-31)
 * Add yunmi water purifier support. Perfect unit test
 

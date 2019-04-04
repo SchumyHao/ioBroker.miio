@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "miio",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "news": {
+            "0.0.5": {
+                "en": "Fix URL mis-match issue ",
+                "de": "Korrigieren Sie das Problem der fehlerhaften Zuordnung von URLs",
+                "ru": "Устранить проблему несоответствия URL",
+                "pt": "Corrigir problema de correspondência incorreta de URL",
+                "nl": "Fix probleem met URL mis-match",
+                "fr": "Correction du problème de correspondance des URL",
+                "it": "Correggi il problema di corrispondenza errata nell'URL",
+                "es": "Solucionar problema de falta de coincidencia de URL",
+                "pl": "Napraw problem z niewłaściwym dopasowaniem adresu URL",
+                "zh-cn": "修复网址不匹配问题"
+            },
             "0.0.4": {
                 "en": "Add yunmi water purifier support. Perfect unit test",
                 "de": "Fügen Sie Yunmi-Wasserreiniger hinzu. Perfekter Gerätetest",
