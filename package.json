@@ -9,7 +9,7 @@
     "name": "SchumyHao",
     "email": "schumyhaojl@126.com"
   },
-  "homepage": "https://github.com/SchumyHao/ioBroker.miio",
+  "homepage": "https://github.com/smarthomefans/ioBroker.miio",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SchumyHao/ioBroker.miio"
+    "url": "https://github.com/smarthomefans/ioBroker.miio"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^1.0.3",
@@ -56,7 +56,7 @@
     "lint:js": "eslint"
   },
   "bugs": {
-    "url": "https://github.com/SchumyHao/ioBroker.miio/issues"
+    "url": "https://github.com/smarthomefans/ioBroker.miio/issues"
   },
   "readmeFilename": "README.md"
 }
