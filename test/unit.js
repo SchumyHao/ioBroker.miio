@@ -190,6 +190,14 @@ tests.unit(path.join(__dirname, ".."), {
                     "role": "state",
                     "type": "number",
                     "unit": "°C"
+                },
+                "loadPower": {
+                    "name": "loadPower",
+                    "read": true,
+                    "role": "state",
+                    "type": "number",
+                    "unit": "W",
+                    "write": false,
                 }
             });
             runOneDeviceTest("philips", "light", "bulb", {

@@ -92,6 +92,7 @@ declare global {
             statePara?: MiioAdapterPropertyPara;
             enum?: (string|number)[];
             mapper?: (v:any) => any;
+            cmd?: string;
         }
 
         type MiioAdapterPropertyPara = {
@@ -112,6 +113,7 @@ declare global {
             max?: number;
             unit?: string;
             obj?: Record<string, number|string|boolean>;
+            cmd?: string;
             mapper?: (v:any) => any;
             statePara: MiioAdapterPropertyPara;
         }
