@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "miio",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "news": {
+            "0.0.6": {
+                "en": "Add power load for chuangmi plug",
+                "de": "Fügen Sie die Stromlast für den Chuangmi-Stecker hinzu",
+                "ru": "Добавить нагрузку на разъем Chuangmi",
+                "pt": "Adicionar carga de energia para o plugue chuangmi",
+                "nl": "Voeg vermogensbelasting toe voor de chuangmi-stekker",
+                "fr": "Ajouter de la puissance pour la prise chuangmi",
+                "it": "Aggiungi carico per la spina di chuangmi",
+                "es": "Añadir carga de potencia para el enchufe chuangmi",
+                "pl": "Dodaj obciążenie dla wtyczki chuangmi",
+                "zh-cn": "为chuangmi插头增加电源负载"
+            },
             "0.0.5": {
                 "en": "Fix URL mis-match issue ",
                 "de": "Korrigieren Sie das Problem der fehlerhaften Zuordnung von URLs",
